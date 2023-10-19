@@ -1,12 +1,15 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class ejercicios {
     // 1. Comprobar si una cadena empieza por “abc”
     boolean uno(String cadena){
-        return cadena.matches("abc$");
+        return cadena.matches("^abc.*");
     }
 
     // 2. Comprobar si una cadena empieza por “abc” o “Abc
     boolean dos(String cadena){
-        return cadena.matches("abc$") || cadena.matches("Abc$");
+        return cadena.matches("^[aA]bc.*");
     }
 
     // 3. Comprobar si una cadena no empieza por un dígito
@@ -73,4 +76,18 @@ public class ejercicios {
         return cadena.matches("\\+34\\s\\d{2}\\s\\d{7}");
     }
 
+    // 12. ¿Qué expresión regular utilizarías para comprobar el número de pedido de una empresa cuyo ID puede tener los siguientes:
+    //• P nn-nnnnn
+    //• P-nn-nnnn
+    //• P# nn nnnn
+    //• P#nn-nnnn
+    //• P nnnnnn
+    //Siendo P el comienzo del ID, y n un número.
+    boolean doce(String cadena){
+        return true;
+    }
+
+    boolean trece(String cadena){
+        return cadena.matches("^[]$");
+    }
 }
