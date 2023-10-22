@@ -16,7 +16,7 @@ public class test {
             }while(!respuesta.nextLine().isEmpty());
         }
     }
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException { // BUSCAR LA MANERA DE SIMPLIFICAR
         bucle b = new bucle();
         System.out.println("-------------------------------------------------------- PROGRAMA DE PRUEBA PARA EXPRESIONES REGULARES --------------------------------------------------------");
         bucle.ejecutar(ejercicios::uno);

@@ -81,7 +81,7 @@ public class ejercicios {
         Matcher matcher = pattern.matcher(cadena.nextLine());
         System.out.println("Evaluación de la condición: " + matcher.find());
     }
-    public static void once() {
+    public static void once() { // A PARTIR DE AQUÍ SE DESCUADRA LA ENTRADA
         System.out.println("11. ¿Qué expresión regular utilizarías para comprobar si un número de teléfono fijo es español?");
         System.out.print("Expresión regular utilizada: ^\\+34\\s\\d{2}\\s\\d{7}$ \nIntroduzca la cadena a evaluar: ");
         Pattern pattern = Pattern.compile("^\\+34\\s\\d{2}\\s\\d{7}$");
