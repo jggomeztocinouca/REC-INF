@@ -89,16 +89,20 @@ public class ejercicios {
         System.out.println("Evaluación de la condición: " + matcher.find());
     }
 
-    public static void doce() { // CAMBIARLO
+    public static void doce() {
         System.out.println("12. ¿Qué expresión regular utilizarías para comprobar el número de pedido de una empresa cuyo ID puede tener los formatos indicados?");
         System.out.print("Expresión regular utilizada: ^P(\\s|[-#])\\d{1,2}([-\\s])?\\d{4,6}$ \nIntroduzca la cadena a evaluar: ");
-        System.out.println("Evaluación de la condición: " + cadena.nextLine().matches("^P(\\s|[-#])\\d{1,2}([-\\s])?\\d{4,6}$"));
+        Pattern pattern = Pattern.compile("^P(\\s|[-#])\\d{1,2}([-\\s])?\\d{4,6}$");
+        Matcher matcher = pattern.matcher(cadena.nextLine());
+        System.out.println("Evaluación de la condición: " + matcher.find());
     }
 
-    public static void trece() { // CAMBIARLO
+    public static void trece() {
         System.out.println("13. Para evitar el spam, intenta localizar posibles alteraciones de la palabra 'viagra'.");
         System.out.print("Expresión regular utilizada: ^v[i!1][@a]gr[@a]$ \nIntroduzca la cadena a evaluar: ");
-        System.out.println("Evaluación de la condición: " + cadena.nextLine().matches("^v[i!1][@a]gr[@a]$"));
+        Pattern pattern = Pattern.compile("^v[i!1][@a]gr[@a]$");
+        Matcher matcher = pattern.matcher(cadena.nextLine());
+        System.out.println("Evaluación de la condición: " + matcher.find());
     }
 
     public static void catorce() throws IOException {
@@ -227,7 +231,7 @@ public class ejercicios {
     }
 
     public static void diecinueve() throws IOException {
-        System.out.println("19. Convierte el texto anterior a mayúsculas");
+        System.out.println("19. Convierte el texto anterior a mayúsculas.");
         File file = new File("ejercicio18.txt");
         FileReader reader = new FileReader(file);
         BufferedReader buffer = new BufferedReader(reader);
