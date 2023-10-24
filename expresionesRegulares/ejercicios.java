@@ -124,8 +124,6 @@ public class ejercicios {
         }
     }
 
-
-
     public static void quince() {
         System.out.println("15. Dada la cadena proporcionada, extrae los caracteres escritos entre los <tags></tags> mediante los 3 patrones propuestos.");
         String cadena = "<a>uno</a><b>dos</b><c>tres</c><d>cuatro</d><e>cinco</e>";
@@ -139,29 +137,29 @@ public class ejercicios {
         while (matcher.find()) {
             System.out.print(matcher.group(1) + " ");
         }
-        System.out.println("\nExplicación 1: Este patrón es de tipo greedy y resulta correcto, por lo que extrae correctamente los caracteres indicados.");
+        // System.out.println("\nExplicación 1: Este patrón es de tipo greedy y resulta correcto, por lo que extrae correctamente los caracteres indicados.");
 
         String patron2 = "<.*>(.*)<\\/.*>";
         pattern = Pattern.compile(patron2);
         matcher = pattern.matcher(cadena);
 
-        System.out.println("\nPatrón 2: " + patron2);
+        System.out.println("\n\nPatrón 2: " + patron2);
         System.out.print("Resultado 2: ");
         while (matcher.find()) {
             System.out.print(matcher.group(1) + " ");
         }
-        System.out.println("\nExplicación 2: Este patrón también es de tipo greedy pero este no cumple con el objetivo indicado. El '.*' intenta extraer todo lo que puede, incluidas las etiquetas, lo que lleva a capturar solo el último valor (\"cinco\") en la cadena.");
+        // System.out.println("\nExplicación 2: Este patrón también es de tipo greedy pero este no cumple con el objetivo indicado. El '.*' intenta extraer todo lo que puede, incluidas las etiquetas, lo que lleva a capturar solo el último valor (\"cinco\") en la cadena.");
 
         String patron3 = ".*?>(.*?)<\\/.*?>";
         pattern = Pattern.compile(patron3);
         matcher = pattern.matcher(cadena);
 
-        System.out.println("\nPatrón 3: " + patron3);
+        System.out.println("\n\nPatrón 3: " + patron3);
         System.out.print("Resultado 3: ");
         while (matcher.find()) {
             System.out.print(matcher.group(1) + " ");
         }
-        System.out.println("\nExplicación 3: Este patrón es de tipo ungreedy. El '?' tras el '*' en '.*?' y .*? hace que la coincidencia sea lo más pequeña posible.");
+        // System.out.println("\nExplicación 3: Este patrón es de tipo ungreedy. El '?' tras el '*' en '.*?' y .*? hace que la coincidencia sea lo más pequeña posible.");
     }
 
 
