@@ -1,0 +1,26 @@
+Component 1: Y component: Quantization table 0, Sampling factors 2 horiz/2 vert
+Component 2: Cb component: Quantization table 1, Sampling factors 1 horiz/1 vert
+Component 3: Cr component: Quantization table 1, Sampling factors 1 horiz/1 vert
+Compression Type: Progressive, Huffman
+Content-Length: 107403
+Content-Type: image/jpeg
+Data Precision: 8 bits
+File Modified Date: Sat Nov 04 20:20:25 +01:00 2023
+File Name: original.jpg
+File Size: 107403 bytes
+Image Height: 788 pixels
+Image Width: 1400 pixels
+Number of Components: 3
+Number of Tables: 2 Huffman tables
+Resolution Units: none
+Thumbnail Height Pixels: 0
+Thumbnail Width Pixels: 0
+Version: 1.1
+X Resolution: 1 dot
+X-TIKA:Parsed-By: org.apache.tika.parser.DefaultParser
+X-TIKA:Parsed-By: org.apache.tika.parser.image.JpegParser
+Y Resolution: 1 dot
+resourceName: original.jpg
+tiff:BitsPerSample: 8
+tiff:ImageLength: 788
+tiff:ImageWidth: 1400

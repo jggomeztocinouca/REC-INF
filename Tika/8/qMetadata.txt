@@ -1,0 +1,47 @@
+Component 1: Y component: Quantization table 0, Sampling factors 2 horiz/2 vert
+Component 2: Cb component: Quantization table 1, Sampling factors 1 horiz/1 vert
+Component 3: Cr component: Quantization table 1, Sampling factors 1 horiz/1 vert
+Compression Type: Progressive, Huffman
+Content-Length: 66370
+Content-Type: image/jpeg
+Data Precision: 8 bits
+File Modified Date: Sat Nov 04 22:09:11 +01:00 2023
+File Name: q.jpg
+File Size: 66370 bytes
+ICC:Blue Colorant: (0.1431, 0.0606, 0.7141)
+ICC:Blue TRC: 0.0, 0.0030976, 0.0069734, 0.0132296, 0.0217594, 0.0328832, 0.0467231, 0.0634623, 0.0832685, 0.1062638, 0.1325856, 0.162356, 0.1956817, 0.2327001, 0.273518, 0.3182269, 0.3669032, 0.4196841, 0.4766461, 0.5378653, 0.6034638, 0.6734874, 0.7480125, 0.8272068, 0.9109026, 1.0
+ICC:CMM Type: lcms
+ICC:Class: Display Device
+ICC:Color space: RGB
+ICC:Green Colorant: (0.3851, 0.7169, 0.0971)
+ICC:Green TRC: 0.0, 0.0030976, 0.0069734, 0.0132296, 0.0217594, 0.0328832, 0.0467231, 0.0634623, 0.0832685, 0.1062638, 0.1325856, 0.162356, 0.1956817, 0.2327001, 0.273518, 0.3182269, 0.3669032, 0.4196841, 0.4766461, 0.5378653, 0.6034638, 0.6734874, 0.7480125, 0.8272068, 0.9109026, 1.0
+ICC:Media Black Point: (0.0121, 0.0125, 0.0103)
+ICC:Media White Point: (0.9642, 1, 0.8249)
+ICC:Primary Platform: Apple Computer, Inc.
+ICC:Profile Connection Space: XYZ
+ICC:Profile Copyright: FB
+ICC:Profile Date/Time: 2012:01:25 03:41:57
+ICC:Profile Description: c2
+ICC:Profile Size: 524
+ICC:Red Colorant: (0.4361, 0.2225, 0.0139)
+ICC:Red TRC: 0.0, 0.0030976, 0.0069734, 0.0132296, 0.0217594, 0.0328832, 0.0467231, 0.0634623, 0.0832685, 0.1062638, 0.1325856, 0.162356, 0.1956817, 0.2327001, 0.273518, 0.3182269, 0.3669032, 0.4196841, 0.4766461, 0.5378653, 0.6034638, 0.6734874, 0.7480125, 0.8272068, 0.9109026, 1.0
+ICC:Signature: acsp
+ICC:Tag Count: 10
+ICC:Version: 2.1.0
+ICC:XYZ values: 0.964 1 0.825
+Image Height: 960 pixels
+Image Width: 720 pixels
+Number of Components: 3
+Number of Tables: 2 Huffman tables
+Resolution Units: inch
+Thumbnail Height Pixels: 0
+Thumbnail Width Pixels: 0
+Version: 1.1
+X Resolution: 72 dots
+X-TIKA:Parsed-By: org.apache.tika.parser.DefaultParser
+X-TIKA:Parsed-By: org.apache.tika.parser.image.JpegParser
+Y Resolution: 72 dots
+resourceName: q.jpg
+tiff:BitsPerSample: 8
+tiff:ImageLength: 960
+tiff:ImageWidth: 720

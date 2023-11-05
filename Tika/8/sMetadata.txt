@@ -1,0 +1,115 @@
+AE Warning: AE Good
+Auto Bracketing: Off
+Blur Warning: No Blur Warning
+Color Saturation: Normal
+Component 1: Y component: Quantization table 0, Sampling factors 2 horiz/1 vert
+Component 2: Cb component: Quantization table 1, Sampling factors 1 horiz/1 vert
+Component 3: Cr component: Quantization table 2, Sampling factors 1 horiz/1 vert
+Compression Type: Baseline
+Content-Length: 2554023
+Content-Type: image/jpeg
+Data Precision: 8 bits
+Dynamic Range: Standard
+Exif IFD0:Copyright: 
+Exif IFD0:Date/Time: 2006:04:25 14:42:14
+Exif IFD0:Make: FUJIFILM
+Exif IFD0:Model: FinePix A500
+Exif IFD0:Orientation: Top, left side (Horizontal / normal)
+Exif IFD0:Resolution Unit: Inch
+Exif IFD0:Software: Digital Camera FinePix A500    Ver1.03
+Exif IFD0:X Resolution: 72 dots per inch
+Exif IFD0:Y Resolution: 72 dots per inch
+Exif IFD0:YCbCr Positioning: Datum point
+Exif SubIFD:Aperture Value: f/4.9
+Exif SubIFD:Brightness Value: 8.99
+Exif SubIFD:Color Space: sRGB
+Exif SubIFD:Components Configuration: YCbCr
+Exif SubIFD:Compressed Bits Per Pixel: 4 bits/pixel
+Exif SubIFD:Custom Rendered: Normal process
+Exif SubIFD:Date/Time Digitized: 2006:04:25 14:42:14
+Exif SubIFD:Date/Time Original: 2006:04:25 14:42:14
+Exif SubIFD:Exif Image Height: 1944 pixels
+Exif SubIFD:Exif Image Width: 2592 pixels
+Exif SubIFD:Exif Version: 2.20
+Exif SubIFD:Exposure Bias Value: 0 EV
+Exif SubIFD:Exposure Mode: Auto exposure
+Exif SubIFD:Exposure Program: Program normal
+Exif SubIFD:Exposure Time: 1/600 sec
+Exif SubIFD:F-Number: f/5.0
+Exif SubIFD:File Source: Digital Still Camera (DSC)
+Exif SubIFD:Flash: Flash did not fire, auto
+Exif SubIFD:FlashPix Version: 1.00
+Exif SubIFD:Focal Length: 14.6 mm
+Exif SubIFD:Focal Plane Resolution Unit: cm
+Exif SubIFD:Focal Plane X Resolution: 1/4442 cm
+Exif SubIFD:Focal Plane Y Resolution: 1/4442 cm
+Exif SubIFD:ISO Speed Ratings: 100
+Exif SubIFD:Max Aperture Value: f/3.2
+Exif SubIFD:Metering Mode: Multi-segment
+Exif SubIFD:Scene Capture Type: Standard
+Exif SubIFD:Scene Type: Directly photographed image
+Exif SubIFD:Sensing Method: One-chip color area sensor
+Exif SubIFD:Sharpness: None
+Exif SubIFD:Shutter Speed Value: 1/604 sec
+Exif SubIFD:Subject Distance Range: Unknown
+Exif SubIFD:White Balance: Unknown
+Exif SubIFD:White Balance Mode: Auto white balance
+Exif Thumbnail:Compression: JPEG (old-style)
+Exif Thumbnail:Orientation: Top, left side (Horizontal / normal)
+Exif Thumbnail:Resolution Unit: Inch
+Exif Thumbnail:Thumbnail Length: 9990 bytes
+Exif Thumbnail:Thumbnail Offset: 1360 bytes
+Exif Thumbnail:X Resolution: 72 dots per inch
+Exif Thumbnail:Y Resolution: 72 dots per inch
+Exif Thumbnail:YCbCr Positioning: Datum point
+File Modified Date: Sat Nov 04 22:09:15 +01:00 2023
+File Name: s.jpg
+File Size: 2554023 bytes
+FinePix Color Setting: Standard
+Flash Mode: Auto
+Flash Strength: 0 EV (Apex)
+Focus Mode: Auto Focus
+Focus Pixel: 1296 972
+Focus Warning: Good Focus
+Image Height: 1944 pixels
+Image Width: 2592 pixels
+Interoperability:Interoperability Index: Recommended Exif Interoperability Rules (ExifR98)
+Interoperability:Interoperability Version: 1.00
+Macro: Off
+Makernote Version: 1.30
+Number of Components: 3
+Number of Tables: 4 Huffman tables
+Picture Mode: Auto
+PrintIM Version: 0250
+Quality: FINE
+Sequence Number: 0
+Serial Number: FC A0479106 592D3935345E06111586033041D4C6
+Sharpness: Normal
+Slow Sync: Off
+Unknown tag (0x0002): 0x01000000
+Unknown tag (0x0101): 0x00000000
+Unknown tag (0x1022): 1
+Unknown tag (0x1032): 1
+Unknown tag (0x1200): 0
+White Balance: Auto
+X-TIKA:Parsed-By: org.apache.tika.parser.DefaultParser
+X-TIKA:Parsed-By: org.apache.tika.parser.image.JpegParser
+dcterms:created: 2006-04-25T14:42:14
+dcterms:modified: 2006-04-25T14:42:14
+exif:DateTimeOriginal: 2006-04-25T14:42:14
+exif:ExposureTime: 0.0016666666666666668
+exif:FNumber: 5.0
+exif:Flash: false
+exif:FocalLength: 14.6
+exif:IsoSpeedRatings: 100
+resourceName: s.jpg
+tiff:BitsPerSample: 8
+tiff:ImageLength: 1944
+tiff:ImageWidth: 2592
+tiff:Make: FUJIFILM
+tiff:Model: FinePix A500   
+tiff:Orientation: 1
+tiff:ResolutionUnit: Inch
+tiff:Software: Digital Camera FinePix A500    Ver1.03
+tiff:XResolution: 72.0
+tiff:YResolution: 72.0

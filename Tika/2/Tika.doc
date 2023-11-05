@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="pdf:PDFVersion" content="1.5"/>
+<meta name="pdf:docinfo:title" content="Ejercicios XML y DTD.docx"/>
+<meta name="xmp:CreatorTool" content="Microsoft® Office Word 2007"/>
+<meta name="pdf:hasXFA" content="false"/>
+<meta name="access_permission:modify_annotations" content="true"/>
+<meta name="access_permission:can_print_degraded" content="true"/>
+<meta name="dc:creator" content="Lo"/>
+<meta name="dcterms:created" content="2017-03-16T10:29:06Z"/>
+<meta name="dcterms:modified" content="2017-03-16T10:29:06Z"/>
+<meta name="dc:format" content="application/pdf; version=1.5"/>
+<meta name="pdf:docinfo:creator_tool" content="Microsoft® Office Word 2007"/>
+<meta name="access_permission:fill_in_form" content="true"/>
+<meta name="pdf:docinfo:modified" content="2017-03-16T10:29:06Z"/>
+<meta name="pdf:hasCollection" content="false"/>
+<meta name="pdf:encrypted" content="false"/>
+<meta name="dc:title" content="Ejercicios XML y DTD.docx"/>
+<meta name="Content-Length" content="246403"/>
+<meta name="pdf:hasMarkedContent" content="true"/>
+<meta name="Content-Type" content="application/pdf"/>
+<meta name="pdf:docinfo:creator" content="Lo"/>
+<meta name="dc:language" content="es-ES"/>
+<meta name="pdf:producer" content="Microsoft® Office Word 2007"/>
+<meta name="access_permission:extract_for_accessibility" content="true"/>
+<meta name="access_permission:assemble_document" content="true"/>
+<meta name="xmpTPg:NPages" content="5"/>
+<meta name="resourceName" content="Tika.pdf"/>
+<meta name="pdf:hasXMP" content="false"/>
+<meta name="access_permission:extract_content" content="true"/>
+<meta name="access_permission:can_print" content="true"/>
+<meta name="X-TIKA:Parsed-By" content="org.apache.tika.parser.DefaultParser"/>
+<meta name="X-TIKA:Parsed-By" content="org.apache.tika.parser.pdf.PDFParser"/>
+<meta name="access_permission:can_modify" content="true"/>
+<meta name="pdf:docinfo:producer" content="Microsoft® Office Word 2007"/>
+<meta name="pdf:docinfo:created" content="2017-03-16T10:29:06Z"/>
+<title>Ejercicios XML y DTD.docx</title>
+</head>
+<body><div class="page"><p/>
+<p>Recuperación de la Información 
+ Grado en Ingeniería Informática de la Universidad de Cádiz 
+</p>
+<p>L.Gutiérrez-Madroñal, lorena.gutierrez@uca.es 
+1 
+</p>
+<p>Práctica: Tika 
+ 
+</p>
+<p>Introducción 
+ 
+Apache TIKA, una herramienta que nos permite detectar y extraer metadatos y texto 
+estructurado de varios tipos de documentos, entre los que podemos encontrar: 
+ 
+    HTML 
+    XML y derivados 
+    .doc, .xls, .ppt (formatos de documentos de Microsoft Office) 
+    .odt (Formato OpenDocument de OpenOffice) 
+    Formatos comprimidos (ar, cpio, tar, zip, gzip, bzip2 y zip) 
+    .pdf (Portable Document Format) 
+    .epub (formato para libros electrónicos) 
+    .rtf (Rich Text Format) 
+    .txt (detectando el juego de caracteres) 
+    Audio (.mp3, .mid, .wav, …) 
+    Imagen (.jpeg, …) 
+    Correos en formato mbox 
+    Video (.flv) 
+    Ficheros Java 
+ 
+Además, si nos descargamos el código fuente del programa, podremos crear nuestras propias 
+clases y métodos en Java por si queremos añadirle alguna funcionalidad más. Solo tendríamos 
+que compilarlo todo y generar el .jar correspondiente. 
+ 
+En nuestro caso, nos descargaremos ya el archivo .jar y trabajaremos con la funcionalidad que 
+nos ofrece Tika. 
+</p>
+<p> 
+Curiosidades 
+ 
+</p>
+<p>Existe una marca de patatas en chile que tienen el mismo nombre [link]. 
+</p>
+<p> 
+Requisitos 
+ 
+Al estar programada en java, esta herramienta se puede usar en cualquier sistema operativo. 
+  
+1. Tener configurado Java en el equipo 
+2. Descargar la herramienta http://tika.apache.org/download.html 
+</p>
+<p> 
+Instalación 
+ 
+Se aconseja el uso del archivo .jar, aunque también se puede descargar el archivo fuente y 
+compilarse de forma normal. 
+ </p>
+<p/>
+<div class="annotation"><a href="http://es.tikachips.com/">http://es.tikachips.com/</a></div>
+</div>
+<div class="page"><p/>
+<p>Recuperación de la Información 
+ Grado en Ingeniería Informática de la Universidad de Cádiz 
+</p>
+<p>L.Gutiérrez-Madroñal, lorena.gutierrez@uca.es 
+2 
+</p>
+<p>Una vez descargado el archivo jar, hay que colocarlo en una carpeta a la que podamos 
+acceder fácilmente ya que vamos a tener que usar la terminal. 
+ 
+Para acceder a Tika se ejecutara el siguiente comando: 
+ 
+ java -jar tika-app-X.X.jar (siendo X.X la versión de Tika) 
+</p>
+<p> 
+Así accedemos al modo ventana de Tika. Para acceder al modo consola se deben añadir más 
+parámetros que veremos a continuación. 
+</p>
+<p> 
+Modo ventana 
+ 
+Para el primer ejemplo usaremos el modo ventana, para ello vamos a utilizar en la terminal el 
+comando visto justo en el apartado anterior y nos saldría la ventana de Apache Tika: 
+ 
+</p>
+<p> 
+ 
+Pulsando en File podemos seleccionar el tipo de archivo de entrada del que extraeremos los 
+datos, en este caso una URL (Open Url) y escribimos/copiamos la url de la web que deseamos 
+descargar, p.e. http://www.20minutos.es/ 
+ </p>
+<p/>
+</div>
+<div class="page"><p/>
+<p>Recuperación de la Información 
+ Grado en Ingeniería Informática de la Universidad de Cádiz 
+</p>
+<p>L.Gutiérrez-Madroñal, lorena.gutierrez@uca.es 
+3 
+</p>
+<p> 
+ 
+En la pestaña View podemos acceder a los distintos tipos de información, metadatos, html… 
+</p>
+<p> 
+Modo consola 
+ 
+En este ejemplo vamos a usar el modo consola, para ello primero vamos a darle un alias al 
+comando que se repetirá, así nos ahorramos escribir siempre la misma parte de la llamada: 
+ 
+alias tika="java -jar tika-app-X.X.jar" 
+</p>
+<p>  
+Para acceder a los mismos datos que hemos visto en el modo ventana nos bastaría con la 
+siguiente orden; 
+ 
+tika http://www.20minutos.es/ 
+</p>
+<p> 
+El problema es que nos mostrará todos los datos en la misma consola (metadatos, xhtml, 
+contenido). 
+ 
+Para evitar esto hay que seleccionar el tipo de información que deseamos, añadiendo al 
+comando una de las siguientes opciones: 
+  
+ </p>
+<p/>
+<div class="annotation"><a href="http://www.20minutos.es/">http://www.20minutos.es/</a></div>
+</div>
+<div class="page"><p/>
+<p>Recuperación de la Información 
+ Grado en Ingeniería Informática de la Universidad de Cádiz 
+</p>
+<p>L.Gutiérrez-Madroñal, lorena.gutierrez@uca.es 
+4 
+</p>
+<p>--metadata 
+</p>
+<p>--text 
+</p>
+<p>--xml 
+</p>
+<p>--html 
+</p>
+<p>--json 
+</p>
+<p>--text-main 
+</p>
+<p>--languaje (detecta el tipo de idioma) 
+</p>
+<p>--detect (detecta el tipo de documento) 
+</p>
+<p>--enconding=X (nos muestra el archivo con la codificación X) 
+</p>
+<p>  
+Quedando: 
+ 
+tika --metadata http://www.20minutos.es/ 
+</p>
+<p>  
+Esto nos mostraría en la consola los metadatos de la página web. 
+ 
+La herramienta nos proporciona una funcionalidad para el almacenamiento de los datos que 
+hemos obtenido. Para ello, guardaremos la información obtenida en el formato que 
+prefiramos. Es más, la herramienta nos da la opción de traspasar información entre diferentes 
+formato, por ejemplo, de un archivo .pdf a un .txt. 
+ 
+Si queremos almacenar el código html de una página en un archivo html haríamos lo 
+siguiente: 
+ 
+tika --html http://www.20minutos.es/ &gt; minutos.html 
+</p>
+<p>  
+Se nos creará un archivo en la carpeta en la que nos encontremos con el contenido de la web 
+en html. Cuando lo probemos, veremos que el estado en el navegador no es exactamente 
+igual que a web original, esto es debido a que nos descargamos el html de la web, pero no el 
+css. 
+ 
+Si queremos almacenar el contenido principal de la web sería: 
+ 
+tika --text-main http://www.20minutos.es/ &gt; minutos.txt 
+</p>
+<p> 
+Si queremos hacer lo mismo sobre un archivo local, solo hay que cambiar la dirección http por 
+la dirección local del fichero. 
+</p>
+<p> 
+</p>
+<p>Ejercicios 
+ 
+</p>
+<p>Describe el procedimiento de cada uno de los ejercicios siguientes: 
+</p>
+<p> 
+</p>
+<p>1. Abrir un archivo pdf en el modo ventana y decir quién es el autor del archivo, si tiene.  
+</p>
+<p>2. Almacenar el contenido de un archivo .pdf en un archivo .doc.  
+</p>
+<p>3. Ver los metadatos de un archivo que esté subido en una página web.  
+</p>
+<p>4. Comprimir un archivo de texto sencillo y abrir con Tika el archivo comprimido.  
+</p>
+<p>5. Pasar por correo y Whatsapp una foto y comparar los metadatos comprobando las 
+</p>
+<p>diferencias.  </p>
+<p/>
+</div>
+<div class="page"><p/>
+<p>Recuperación de la Información 
+ Grado en Ingeniería Informática de la Universidad de Cádiz 
+</p>
+<p>L.Gutiérrez-Madroñal, lorena.gutierrez@uca.es 
+5 
+</p>
+<p>6. Ver los metadatos de http://www.uca.es/es/ y guardarlo en un archivo.txt. 
+</p>
+<p>7. Pasar un archivo .rdf a .doc. ¿Pasar el archivo .doc o .rdf al formato .pdf dará error? 
+</p>
+<p>8. Descargar las 3 imágenes que se proporcionan en la carpeta “Material Tika” y decir 
+</p>
+<p>qué imagen (o imágenes) se sacó (sacaron) con un producto perteneciente a apple 
+</p>
+<p>computer inc. 
+</p>
+<p>9. Describir el procedimiento seguido para guardar el contenido de una web cualquiera 
+</p>
+<p>en un archivo html, este convertirlo en doc y comprobar los metadatos de este último. 
+</p>
+<p>10. Descargar tres imágenes, a elección del alumno, de tres sitios diferentes donde los 
+</p>
+<p>usuarios compartan imágenes como pueden ser: facebook, instagram, flickr, twitter... 
+</p>
+<p>y comentar las diferencias que encontramos en los metadatos. 
+</p>
+<p>11. Se puede trabajar con Tika desde Eclipse. Describe los pasos que han de realizarse 
+</p>
+<p>para poder crear un proyecto Tika en Eclipse en el que se extraiga el contenido de un 
+</p>
+<p>fichero PDF. 
+</p>
+<p> 
+</p>
+<p>Referencias 
+ 
+</p>
+<p>http://tika.apache.org/ 
+</p>
+<p>Chris A. Mattman, Jukka L. Zitting (2012) Tika in Action. Manning Publications Co. </p>
+<p/>
+</div>
+</body></html>

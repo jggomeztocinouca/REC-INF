@@ -1,0 +1,96 @@
+Content-Length: 2278764
+Content-Type: application/pdf
+CreationDate--Text: 7th June 2023
+CrossMarkDomains[1]: elsevier.com
+CrossMarkDomains[2]: sciencedirect.com
+CrossmarkDomainExclusive: true
+CrossmarkMajorVersionDate: 2010-04-23
+ElsevierWebPDFSpecifications: 7.0
+X-TIKA:Parsed-By: org.apache.tika.parser.DefaultParser
+X-TIKA:Parsed-By: org.apache.tika.parser.pdf.PDFParser
+access_permission:assemble_document: true
+access_permission:can_modify: true
+access_permission:can_print: true
+access_permission:can_print_degraded: true
+access_permission:extract_content: true
+access_permission:extract_for_accessibility: true
+access_permission:fill_in_form: true
+access_permission:modify_annotations: true
+dc:creator: Jesús Rosa-Bilbao
+dc:creator: Juan Boubeta-Puig
+dc:creator: Adrian Rutle
+dc:description: Internet of Things, 22 (2023) 100802. doi:10.1016/j.iot.2023.100802
+dc:format: application/pdf; version=1.7
+dc:language: en-US
+dc:subject: Air quality,Blockchain,Complex event processing,Event-driven architecture,Internet of Things,Low-code
+dc:subject: Internet of Things, 22 (2023) 100802. doi:10.1016/j.iot.2023.100802
+dc:title: CEPEDALoCo: An event-driven architecture for integrating complex event processing and blockchain through low-code
+dcterms:created: 2023-06-07T06:19:20Z
+dcterms:modified: 2023-06-07T06:30:56Z
+doi: 10.1016/j.iot.2023.100802
+meta:keyword: Air quality,Blockchain,Complex event processing,Event-driven architecture,Internet of Things,Low-code
+pdf:PDFVersion: 1.7
+pdf:annotationSubtypes: Link
+pdf:annotationTypes: null
+pdf:charsPerPage: 3228
+pdf:charsPerPage: 5306
+pdf:charsPerPage: 4873
+pdf:charsPerPage: 3978
+pdf:charsPerPage: 3419
+pdf:charsPerPage: 2988
+pdf:charsPerPage: 4775
+pdf:charsPerPage: 3958
+pdf:charsPerPage: 3426
+pdf:charsPerPage: 365
+pdf:charsPerPage: 2450
+pdf:charsPerPage: 2441
+pdf:charsPerPage: 2298
+pdf:charsPerPage: 4715
+pdf:charsPerPage: 7792
+pdf:charsPerPage: 3502
+pdf:docinfo:created: 2023-06-07T06:19:20Z
+pdf:docinfo:creator: Jesús Rosa-Bilbao
+pdf:docinfo:creator_tool: Elsevier
+pdf:docinfo:custom:CreationDate--Text: 7th June 2023
+pdf:docinfo:custom:CrossMarkDomains[1]: elsevier.com
+pdf:docinfo:custom:CrossMarkDomains[2]: sciencedirect.com
+pdf:docinfo:custom:CrossmarkDomainExclusive: true
+pdf:docinfo:custom:CrossmarkMajorVersionDate: 2010-04-23
+pdf:docinfo:custom:ElsevierWebPDFSpecifications: 7.0
+pdf:docinfo:custom:doi: 10.1016/j.iot.2023.100802
+pdf:docinfo:custom:robots: noindex
+pdf:docinfo:keywords: Air quality,Blockchain,Complex event processing,Event-driven architecture,Internet of Things,Low-code
+pdf:docinfo:modified: 2023-06-07T06:30:56Z
+pdf:docinfo:producer: Acrobat Distiller 8.1.0 (Windows)
+pdf:docinfo:subject: Internet of Things, 22 (2023) 100802. doi:10.1016/j.iot.2023.100802
+pdf:docinfo:title: CEPEDALoCo: An event-driven architecture for integrating complex event processing and blockchain through low-code
+pdf:encrypted: false
+pdf:hasCollection: false
+pdf:hasMarkedContent: false
+pdf:hasXFA: false
+pdf:hasXMP: true
+pdf:producer: Acrobat Distiller 8.1.0 (Windows)
+pdf:unmappedUnicodeCharsPerPage: 0
+pdf:unmappedUnicodeCharsPerPage: 0
+pdf:unmappedUnicodeCharsPerPage: 0
+pdf:unmappedUnicodeCharsPerPage: 0
+pdf:unmappedUnicodeCharsPerPage: 0
+pdf:unmappedUnicodeCharsPerPage: 0
+pdf:unmappedUnicodeCharsPerPage: 0
+pdf:unmappedUnicodeCharsPerPage: 0
+pdf:unmappedUnicodeCharsPerPage: 0
+pdf:unmappedUnicodeCharsPerPage: 0
+pdf:unmappedUnicodeCharsPerPage: 0
+pdf:unmappedUnicodeCharsPerPage: 0
+pdf:unmappedUnicodeCharsPerPage: 0
+pdf:unmappedUnicodeCharsPerPage: 0
+pdf:unmappedUnicodeCharsPerPage: 0
+pdf:unmappedUnicodeCharsPerPage: 0
+resourceName: APC_2023_075.pdf
+robots: noindex
+xmp:CreateDate: 2023-06-07T04:19:20Z
+xmp:CreatorTool: Elsevier
+xmp:MetadataDate: 2023-06-07T04:30:56Z
+xmp:ModifyDate: 2023-06-07T04:30:56Z
+xmpMM:DocumentID: uuid:1b499bed-4ce8-4c0c-b682-0d58baae1cbe
+xmpTPg:NPages: 16
