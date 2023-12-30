@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 public class moduloPlanificacion {
     private Queue<tuplaProfundidadURL> colaURL;
-    private ConcurrentHashMap<URL, Integer> URLvisitadas;
+    private ConcurrentHashMap<URL, Integer> URLvisitadas; // Adecuado para entornos de múltiples hilos.
     private int profundidadMaxima;
 
     /**
@@ -28,22 +28,22 @@ public class moduloPlanificacion {
      * @param profundidadMaxima Profundidad máxima de crawling.
      */
     public void establecerProfundidadMaxima(int profundidadMaxima) {
-        this.profundidadMaxima = profundidadMaxima;
+        this.profundidadMaxima = profundidadMaxima; // Necesario para no planificar más allá del límite de profundidad.
     }
 
     /**
      * Añade una URL a la cola si no ha sido visitada o si su profundidad actual es menor que la nueva profundidad.
      *
-     * @param url URL a añadir.
+     * @param url         URL a añadir.
      * @param profundidad Profundidad de la URL.
      */
     public synchronized void encolarURL(URL url, int profundidad) {
-        if (!visitada(url) && profundidad < profundidadMaxima) {
+        if (!visitada(url) && profundidad <= profundidadMaxima) { // Si no se ha visitado y no supera la profundidad máxima, se añade a la cola.
             colaURL.add(new tuplaProfundidadURL(url, profundidad));
             URLvisitadas.put(url, profundidad);
-        } else {
+        } /*else {
             System.out.println("URL ya visitada: " + url);
-        }
+        }*/
     }
 
     /**
@@ -52,10 +52,10 @@ public class moduloPlanificacion {
      * @return El siguiente par URL-Profundidad en la cola, o null si la cola está vacía.
      */
     public tuplaProfundidadURL siguienteURL() {
-        tuplaProfundidadURL tupla = colaURL.poll();
-        if (tupla != null) {
+        tuplaProfundidadURL tupla = colaURL.poll(); // Devuelve URL o null si la cola está vacía.
+        /*if (tupla != null) {
             System.out.println("Desencolando URL: " + tupla.url);
-        }
+        }*/
         return tupla;
     }
 
