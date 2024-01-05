@@ -22,7 +22,8 @@ public class IndiceInvertidoEntrada {
         return documentosConPeso;
     }
 
-    public void setDocumentosConPeso(Map<String, Double> documentosConPeso) {
+
+    /*public void setDocumentosConPeso(Map<String, Double> documentosConPeso) {
         this.documentosConPeso = documentosConPeso;
-    }
+    }*/
 }
