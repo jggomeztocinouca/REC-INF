@@ -44,6 +44,7 @@ public class Preprocesador {
      */
     public void procesarCorpus() {
         System.out.println("[PRE-PROCESAMIENTO] Iniciando...");
+        long tiempoInicio = System.currentTimeMillis();
         try (Stream<Path> rutasStream = Files.walk(Paths.get(RUTA_CORPUS))) {
             List<Path> rutas = rutasStream.filter(Files::isRegularFile).toList();
             Files.createDirectories(Paths.get(RUTA_SALIDA));
@@ -58,7 +59,7 @@ public class Preprocesador {
                     if (terminos.isEmpty()) {
                         System.out.println("[PRE-PROCESAMIENTO (EXCEPCIÓN)] Documento vacío: " + ruta.getFileName());
                     } else {
-                        Files.writeString(Paths.get(RUTA_SALIDA, ruta.getFileName().toString() + "_procesado"),
+                        Files.writeString(Paths.get(RUTA_SALIDA, "procesado_" + ruta.getFileName().toString()),
                                 String.join(" ", terminos));
                     }
                 } catch (IOException e) {
@@ -66,7 +67,8 @@ public class Preprocesador {
                 }
             });
 
-            System.out.println("[PRE-PROCESAMIENTO] Finalizado.");
+            long tiempoFin = System.currentTimeMillis();
+            System.out.println("[PRE-PROCESAMIENTO] Finalizado en " + (tiempoFin - tiempoInicio) + " ms.");
         } catch (IOException e) {
             System.err.println("[PRE-PROCESAMIENTO (ERROR)] Error al acceder a los archivos del corpus: " + e.getMessage());
         }

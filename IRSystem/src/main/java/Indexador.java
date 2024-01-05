@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -110,14 +111,16 @@ public class Indexador {
      */
     private void calcularIdfYActualizarIndice() {
         int totalDocumentos = tfPorDocumento.size();
-        indiceInvertido.forEach((termino, entradaAntigua) -> {
-            double idf = Math.log((double) totalDocumentos / entradaAntigua.getDocumentosConPeso().size());
+        indiceInvertido.forEach((termino, entrada) -> {
+            double idf = Math.log((double) totalDocumentos / entrada.getDocumentosConPeso().size());
             idfPorTermino.put(termino, idf);
 
-            Map<String, Double> documentosConTfIdf = new ConcurrentHashMap<>();
-            entradaAntigua.getDocumentosConPeso().forEach((documento, tf) -> documentosConTfIdf.put(documento, tf * idf));
+            entrada.setIdf(idf); // Actualizar el valor de IDF en la entrada del índice invertido
 
-            indiceInvertido.put(termino, new IndiceInvertidoEntrada(idf, documentosConTfIdf));
+            entrada.getDocumentosConPeso().forEach((documento, tf) -> {
+                double tfIdf = tf * idf;
+                entrada.getDocumentosConPeso().put(documento, tfIdf);
+            });
         });
     }
 
@@ -139,11 +142,15 @@ public class Indexador {
     private void guardarIndiceInvertido() throws IOException {
         try (PrintWriter writer = new PrintWriter(Files.newBufferedWriter(Paths.get(RUTA_INDICE_INVERTIDO)))) {
             indiceInvertido.forEach((termino, entrada) -> {
-                String idf = String.valueOf(entrada.getIdf());
-                entrada.getDocumentosConPeso().forEach((documento, pesoTFIDF) -> writer.println(termino + " → | " + idf + " | (" + documento + "-peso " + pesoTFIDF + ")"));
+                String linea = termino + " → | " + entrada.getIdf() + " | ";
+                linea += entrada.getDocumentosConPeso().entrySet().stream()
+                        .map(entry -> "(" + entry.getKey() + "-peso " + entry.getValue() + ")")
+                        .collect(Collectors.joining(" "));
+                writer.println(linea);
             });
         }
     }
+
 
     /**
      * Guarda los valores IDF en un archivo.
