@@ -4,10 +4,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Stream;
 
 /**
  * Clase para la indexación de documentos procesados.
@@ -21,7 +21,7 @@ public class Indexador {
     private final Map<String, Map<String, Double>> tfPorDocumento;
     private final Map<String, Double> idfPorTermino;
     private final Map<String, Double> longitudPorDocumento;
-    private final Map<String, Map<String, Double>> indiceInvertido;
+    private final Map<String, IndiceInvertidoEntrada> indiceInvertido;
 
     /**
      * Constructor para la clase Indexador.
@@ -39,28 +39,26 @@ public class Indexador {
     public void indexar() {
         System.out.println("[INDEXACIÓN] Iniciando...");
         long tiempoInicio = System.currentTimeMillis();
-        try {
-            Files.walk(Paths.get(RUTA_SALIDA_PREPROCESADOR))
-                    .filter(Files::isRegularFile)
+
+        try (Stream<Path> paths = Files.walk(Paths.get(RUTA_SALIDA_PREPROCESADOR))) {
+            paths.filter(Files::isRegularFile)
+                    .parallel() // Procesamiento paralelo
                     .forEach(this::procesarDocumento);
 
             calcularIdfYActualizarIndice();
             calcularLongitudPorDocumento();
 
-            try {
-                guardarIndiceInvertido();
-                guardarIdf();
-                guardarLongitudDocumentos();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            guardarIndiceInvertido();
+            guardarIdf();
+            guardarLongitudDocumentos();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error durante la indexación: " + e.getMessage());
         }
+
         long tiempoFin = System.currentTimeMillis();
-        System.out.println("[INDEXACIÓN] Finalizada.");
-        System.out.println("[INDEXACIÓN] Tiempo de ejecución: " + (tiempoFin - tiempoInicio) + " ms");
+        System.out.println("[INDEXACIÓN] Finalizada en " + (tiempoFin - tiempoInicio) + " ms");
     }
+
 
     /**
      * Procesa un documento individual para calcular TF y construir el índice invertido.
@@ -75,46 +73,51 @@ public class Indexador {
 
             if (terminos.isEmpty()) {
                 System.out.println("Documento vacío: " + rutaDocumento.getFileName());
+                return;
             }
 
             String nombreDocumento = rutaDocumento.getFileName().toString();
-            Map<String, Double> frecuenciaTerminos = new HashMap<>();
+            Map<String, Double> frecuenciaTerminos = new ConcurrentHashMap<>();
 
+            // Calcular la frecuencia de cada término en el documento
             for (String termino : terminos) {
                 if (!termino.trim().isEmpty()) { // Comprueba que el término no esté vacío
                     frecuenciaTerminos.merge(termino, 1.0, Double::sum);
                 }
             }
 
-            Map<String, Double> tfTerminos = new HashMap<>();
+            // Calcular el TF para cada término y actualizar el índice invertido provisionalmente
+            Map<String, Double> tfTerminos = new ConcurrentHashMap<>();
             frecuenciaTerminos.forEach((termino, frecuencia) -> {
                 double tf = 1 + Math.log(frecuencia);
                 tfTerminos.put(termino, tf);
-                indiceInvertido.computeIfAbsent(termino, k -> new ConcurrentHashMap<>()).put(nombreDocumento, tf);
-                //actualizarIndiceInvertido(termino, nombreDocumento, tf, idf);
+
+                // Actualizar el índice invertido con la frecuencia del término
+                indiceInvertido.computeIfAbsent(termino, k -> new IndiceInvertidoEntrada(0.0, new ConcurrentHashMap<>()))
+                        .getDocumentosConPeso().put(nombreDocumento, tf);
             });
 
+            // Almacenar los TF de cada término para este documento
             tfPorDocumento.put(nombreDocumento, tfTerminos);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error al procesar el documento " + rutaDocumento + ": " + e.getMessage());
         }
     }
 
-    //private void actualizarIndiceInvertido(String termino, String documento, double tf, double idf) {
-      // double tfidf = tf * idf;
-      // indiceInvertido.computeIfAbsent(termino, k -> new ConcurrentHashMap<>()).put(documento, tfidf);
-   // }
 
     /**
      * Calcula el IDF para cada término y actualiza el índice invertido.
      */
     private void calcularIdfYActualizarIndice() {
         int totalDocumentos = tfPorDocumento.size();
-        indiceInvertido.forEach((termino, documentos) -> {
-            double idf = Math.log((double) totalDocumentos / documentos.size());
+        indiceInvertido.forEach((termino, entradaAntigua) -> {
+            double idf = Math.log((double) totalDocumentos / entradaAntigua.getDocumentosConPeso().size());
             idfPorTermino.put(termino, idf);
 
-            documentos.forEach((documento, tf) -> documentos.put(documento, tf * idf));
+            Map<String, Double> documentosConTfIdf = new ConcurrentHashMap<>();
+            entradaAntigua.getDocumentosConPeso().forEach((documento, tf) -> documentosConTfIdf.put(documento, tf * idf));
+
+            indiceInvertido.put(termino, new IndiceInvertidoEntrada(idf, documentosConTfIdf));
         });
     }
 
@@ -135,10 +138,9 @@ public class Indexador {
      */
     private void guardarIndiceInvertido() throws IOException {
         try (PrintWriter writer = new PrintWriter(Files.newBufferedWriter(Paths.get(RUTA_INDICE_INVERTIDO)))) {
-            indiceInvertido.forEach((termino, documentos) -> {
-                documentos.forEach((documento, pesoTFIDF) -> {
-                    writer.println(documento + ":" + termino + "=" + pesoTFIDF);
-                });
+            indiceInvertido.forEach((termino, entrada) -> {
+                String idf = String.valueOf(entrada.getIdf());
+                entrada.getDocumentosConPeso().forEach((documento, pesoTFIDF) -> writer.println(termino + " → | " + idf + " | (" + documento + "-peso " + pesoTFIDF + ")"));
             });
         }
     }
@@ -162,5 +164,4 @@ public class Indexador {
                     writer.println(documento + ":" + longitud));
         }
     }
-
 }

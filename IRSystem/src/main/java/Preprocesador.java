@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -45,91 +44,56 @@ public class Preprocesador {
      */
     public void procesarCorpus() {
         System.out.println("[PRE-PROCESAMIENTO] Iniciando...");
-        long tiempoInicio = System.currentTimeMillis();
         try (Stream<Path> rutasStream = Files.walk(Paths.get(RUTA_CORPUS))) {
-            List<Path> rutas = rutasStream.filter(Files::isRegularFile)
-                    .toList();
+            List<Path> rutas = rutasStream.filter(Files::isRegularFile).toList();
             Files.createDirectories(Paths.get(RUTA_SALIDA));
 
-            ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-            //AtomicInteger contadorDocumentos = new AtomicInteger(1);
+            AtomicInteger contadorDocumentos = new AtomicInteger(1);
 
-            for (Path ruta : rutas) {
-                pool.submit(() -> {
-                    try {
-                        //int numDocumento = contadorDocumentos.getAndIncrement();
-                        //System.out.println("Procesando documento Nº. " + numDocumento + ": " + ruta.getFileName());
-                        List<String> terminos = preprocesarDocumento(ruta);
-                        if (terminos.isEmpty()) {
-                            System.out.println("Documento vacío: " + ruta.getFileName());
-                        } else {
-                            Files.writeString(Paths.get(RUTA_SALIDA, ruta.getFileName().toString()+"_procesado"),
-                                    String.join(" ", terminos));
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
+            rutas.parallelStream().forEach(ruta -> {
+                try {
+                    int numDocumento = contadorDocumentos.getAndIncrement();
+                    System.out.println("[PRE-PROCESAMIENTO] Procesando documento Nº " + numDocumento + ": " + ruta.getFileName());
+                    List<String> terminos = preprocesarDocumento(ruta);
+                    if (terminos.isEmpty()) {
+                        System.out.println("[PRE-PROCESAMIENTO (EXCEPCIÓN)] Documento vacío: " + ruta.getFileName());
+                    } else {
+                        Files.writeString(Paths.get(RUTA_SALIDA, ruta.getFileName().toString() + "_procesado"),
+                                String.join(" ", terminos));
                     }
-                });
-            }
+                } catch (IOException e) {
+                    System.err.println("[PRE-PROCESAMIENTO (ERROR)] Error al procesar el documento " + ruta.getFileName() + ": " + e.getMessage());
+                }
+            });
 
-            pool.shutdown();
-            if(pool.awaitTermination(1, TimeUnit.HOURS)){
-                long tiempoFin = System.currentTimeMillis();
-                System.out.println("[PRE-PROCESAMIENTO] Finalizando...");
-                System.out.println("[PRE-PROCESAMIENTO] Tiempo de ejecución: " + (tiempoFin - tiempoInicio) + " ms.");
-            }
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+            System.out.println("[PRE-PROCESAMIENTO] Finalizado.");
+        } catch (IOException e) {
+            System.err.println("[PRE-PROCESAMIENTO (ERROR)] Error al acceder a los archivos del corpus: " + e.getMessage());
         }
     }
 
-    /**
-     * Preprocesa un documento leyendo su contenido y aplicando las operaciones de preprocesamiento.
-     *
-     * @param rutaDocumento La ruta del documento a preprocesar.
-     * @return Lista de términos preprocesados del documento.
-     * @throws IOException Si ocurre un error en la lectura del archivo.
-     */
     private List<String> preprocesarDocumento(Path rutaDocumento) throws IOException {
-        String contenido = new String(Files.readAllBytes(rutaDocumento)); // Lee el contenido del documento.
+        String contenido = new String(Files.readAllBytes(rutaDocumento));
         return preprocesarTexto(contenido);
     }
 
-    /**
-     * Preprocesa un texto aplicando diversas operaciones de limpieza y normalización.
-     *
-     * @param texto El texto a preprocesar.
-     * @return Lista de términos preprocesados.
-     */
     private List<String> preprocesarTexto(String texto) {
         String textoProcesado = texto.toLowerCase();
         textoProcesado = PATRON_PUNTUACION.matcher(textoProcesado).replaceAll(" ");
         textoProcesado = PATRON_NUMEROS.matcher(textoProcesado).replaceAll(" ");
         textoProcesado = PATRON_ESPACIOS_DUPLICADOS.matcher(textoProcesado).replaceAll(" ").trim();
 
-        List<String> terminos = new ArrayList<>(Arrays.asList(textoProcesado.split("\\s")));
+        List<String> terminos = new ArrayList<>(Arrays.asList(textoProcesado.split("\\s+")));
         terminos = filtrarPalabrasVacias(terminos);
         return aplicarStemming(terminos);
     }
 
-    /**
-     * Filtra palabras vacías de una lista de términos.
-     *
-     * @param terminos Lista de términos a filtrar.
-     * @return Lista de términos sin palabras vacías.
-     */
     private List<String> filtrarPalabrasVacias(List<String> terminos) {
         return terminos.stream()
                 .filter(termino -> !PALABRAS_VACIAS.contains(termino))
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Aplica stemming a una lista de términos.
-     *
-     * @param terminos Lista de términos a los que aplicar stemming.
-     * @return Lista de términos después de aplicar stemming.
-     */
     private List<String> aplicarStemming(List<String> terminos) {
         SnowballStemmer stemmer = new porterStemmer();
         List<String> terminosProcesados = new ArrayList<>();
@@ -142,5 +106,4 @@ public class Preprocesador {
 
         return terminosProcesados;
     }
-
 }
