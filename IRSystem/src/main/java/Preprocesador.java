@@ -79,7 +79,7 @@ public class Preprocesador {
         return preprocesarTexto(contenido);
     }
 
-    private List<String> preprocesarTexto(String texto) {
+    public List<String> preprocesarTexto(String texto) {
         String textoProcesado = texto.toLowerCase();
         textoProcesado = PATRON_PUNTUACION.matcher(textoProcesado).replaceAll(" ");
         textoProcesado = PATRON_NUMEROS.matcher(textoProcesado).replaceAll(" ");
