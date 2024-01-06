@@ -57,7 +57,7 @@ public class Indexador {
         }
 
         long tiempoFin = System.currentTimeMillis();
-        System.out.println("[INDEXACIÓN] Finalizada en " + (tiempoFin - tiempoInicio) + " ms");
+        System.out.println("[INDEXACIÓN] Finalizada en " + (tiempoFin - tiempoInicio) + " ms.");
     }
 
 

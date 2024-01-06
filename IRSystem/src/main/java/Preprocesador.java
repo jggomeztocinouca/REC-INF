@@ -54,7 +54,7 @@ public class Preprocesador {
             rutas.parallelStream().forEach(ruta -> {
                 try {
                     int numDocumento = contadorDocumentos.getAndIncrement();
-                    System.out.println("[PRE-PROCESAMIENTO] Procesando documento Nº " + numDocumento + ": " + ruta.getFileName());
+                    //System.out.println("[PRE-PROCESAMIENTO] Procesando documento Nº " + numDocumento + ": " + ruta.getFileName());
                     List<String> terminos = preprocesarDocumento(ruta);
                     if (terminos.isEmpty()) {
                         System.out.println("[PRE-PROCESAMIENTO (EXCEPCIÓN)] Documento vacío: " + ruta.getFileName());
