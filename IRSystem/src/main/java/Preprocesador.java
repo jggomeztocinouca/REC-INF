@@ -1,26 +1,17 @@
-import org.tartarus.snowball.SnowballStemmer;
-import org.tartarus.snowball.ext.porterStemmer;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 /**
  * Clase para el preprocesamiento de textos de los documentos del corpus.
  */
 public class Preprocesador {
-
-    private static final String RUTA_CORPUS = "src/main/resources/corpus";
-    private static final String RUTA_SALIDA = "src/main/resources/output";
-    private static final Pattern PATRON_PUNTUACION = Pattern.compile("[^\\w\\s]|_");
-    private static final Pattern PATRON_NUMEROS = Pattern.compile("\\b\\d+\\b");
-    private static final Pattern PATRON_ESPACIOS_DUPLICADOS = Pattern.compile("\\s+");
     private static final Set<String> PALABRAS_VACIAS = new HashSet<>(Arrays.asList(
             "a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any",
             "are", "aren't", "as", "at", "be", "because", "been", "before", "being", "below", "between", "both",
@@ -45,27 +36,11 @@ public class Preprocesador {
     public void procesarCorpus() {
         System.out.println("[PRE-PROCESAMIENTO] Iniciando...");
         long tiempoInicio = System.currentTimeMillis();
-        try (Stream<Path> rutasStream = Files.walk(Paths.get(RUTA_CORPUS))) {
+        try (Stream<Path> rutasStream = Files.walk(Paths.get(Rutas.RUTA_CORPUS))) {
             List<Path> rutas = rutasStream.filter(Files::isRegularFile).toList();
-            Files.createDirectories(Paths.get(RUTA_SALIDA));
+            Files.createDirectories(Paths.get(Rutas.RUTA_CORPUS_PROCESADO));
 
-            AtomicInteger contadorDocumentos = new AtomicInteger(1);
-
-            rutas.parallelStream().forEach(ruta -> {
-                try {
-                    int numDocumento = contadorDocumentos.getAndIncrement();
-                    //System.out.println("[PRE-PROCESAMIENTO] Procesando documento Nº " + numDocumento + ": " + ruta.getFileName());
-                    List<String> terminos = preprocesarDocumento(ruta);
-                    if (terminos.isEmpty()) {
-                        System.out.println("[PRE-PROCESAMIENTO (EXCEPCIÓN)] Documento vacío: " + ruta.getFileName());
-                    } else {
-                        Files.writeString(Paths.get(RUTA_SALIDA, "procesado_" + ruta.getFileName().toString()),
-                                String.join(" ", terminos));
-                    }
-                } catch (IOException e) {
-                    System.err.println("[PRE-PROCESAMIENTO (ERROR)] Error al procesar el documento " + ruta.getFileName() + ": " + e.getMessage());
-                }
-            });
+            rutas.parallelStream().forEach(this::procesarDocumentoIndividual);
 
             long tiempoFin = System.currentTimeMillis();
             System.out.println("[PRE-PROCESAMIENTO] Finalizado en " + (tiempoFin - tiempoInicio) + " ms.");
@@ -74,38 +49,26 @@ public class Preprocesador {
         }
     }
 
-    private List<String> preprocesarDocumento(Path rutaDocumento) throws IOException {
-        String contenido = new String(Files.readAllBytes(rutaDocumento));
-        return preprocesarTexto(contenido);
-    }
-
-    public List<String> preprocesarTexto(String texto) {
-        String textoProcesado = texto.toLowerCase();
-        textoProcesado = PATRON_PUNTUACION.matcher(textoProcesado).replaceAll(" ");
-        textoProcesado = PATRON_NUMEROS.matcher(textoProcesado).replaceAll(" ");
-        textoProcesado = PATRON_ESPACIOS_DUPLICADOS.matcher(textoProcesado).replaceAll(" ").trim();
-
-        List<String> terminos = new ArrayList<>(Arrays.asList(textoProcesado.split("\\s+")));
-        terminos = filtrarPalabrasVacias(terminos);
-        return aplicarStemming(terminos);
-    }
-
-    private List<String> filtrarPalabrasVacias(List<String> terminos) {
-        return terminos.stream()
-                .filter(termino -> !PALABRAS_VACIAS.contains(termino))
-                .collect(Collectors.toList());
-    }
-
-    private List<String> aplicarStemming(List<String> terminos) {
-        SnowballStemmer stemmer = new porterStemmer();
-        List<String> terminosProcesados = new ArrayList<>();
-
-        for (String termino : terminos) {
-            stemmer.setCurrent(termino);
-            stemmer.stem();
-            terminosProcesados.add(stemmer.getCurrent());
+    private void procesarDocumentoIndividual(Path ruta) {
+        try {
+            List<String> terminos = preprocesarDocumento(ruta);
+            if (terminos.isEmpty()) {
+                System.out.println("[PRE-PROCESAMIENTO (EXCEPCIÓN)] Documento vacío: " + ruta.getFileName());
+            } else {
+                guardarTerminosProcesados(ruta, terminos);
+            }
+        } catch (IOException e) {
+            System.err.println("[PRE-PROCESAMIENTO (ERROR)] Error al procesar el documento " + ruta.getFileName() + ": " + e.getMessage());
         }
+    }
 
-        return terminosProcesados;
+    private List<String> preprocesarDocumento(Path rutaDocumento) throws IOException {
+        String contenido = Files.readString(rutaDocumento);
+        return FiltradorTexto.filtradoCompleto(contenido, PALABRAS_VACIAS);
+    }
+
+    private void guardarTerminosProcesados(Path ruta, List<String> terminos) throws IOException {
+        Files.writeString(Paths.get(Rutas.RUTA_CORPUS_PROCESADO, "procesado_" + ruta.getFileName().toString()),
+                String.join(" ", terminos));
     }
 }
