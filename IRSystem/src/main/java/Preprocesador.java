@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
+// TODO: Comentar y generar Javadoc.
+
 /**
  * Clase para el preprocesamiento de textos de los documentos del corpus.
  */

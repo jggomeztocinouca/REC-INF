@@ -8,6 +8,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+// TODO: Comentar y generar Javadoc.
+
 /**
  * Clase para la indexación de documentos procesados.
  */

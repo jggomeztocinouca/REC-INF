@@ -5,3 +5,5 @@ public class Rutas {
     public static final String RUTA_IDF = "src/main/resources/idf.txt";
     public static final String RUTA_LONGITUD_DOCUMENTOS = "src/main/resources/longitud_documentos.txt";
 }
+
+// TODO: Comentar y generar Javadoc.

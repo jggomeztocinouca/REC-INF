@@ -7,6 +7,8 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+// TODO: Comentar y generar Javadoc.
+
 public class FiltradorTexto {
     private static final Pattern PATRON_PUNTUACION = Pattern.compile("[^\\w\\s]|_");
     private static final Pattern PATRON_NUMEROS = Pattern.compile("\\b\\d+\\b");

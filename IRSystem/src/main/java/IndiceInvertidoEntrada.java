@@ -1,5 +1,7 @@
 import java.util.Map;
 
+// TODO: Comentar y generar Javadoc.
+
 /**
  * Clase que representa una entrada en el índice invertido, asociando un término con su IDF y los documentos (con sus pesos) en los que aparece.
  */
