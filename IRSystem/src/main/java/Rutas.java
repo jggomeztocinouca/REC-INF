@@ -1,3 +1,6 @@
+/**
+ * Clase que contiene las rutas de los archivos de entrada y salida de los diferentes módulos.
+ */
 public class Rutas {
     public static final String RUTA_CORPUS = "src/main/resources/corpus";
     public static final String RUTA_CORPUS_PROCESADO = "src/main/resources/output";
@@ -5,5 +8,3 @@ public class Rutas {
     public static final String RUTA_IDF = "src/main/resources/idf.txt";
     public static final String RUTA_LONGITUD_DOCUMENTOS = "src/main/resources/longitud_documentos.txt";
 }
-
-// TODO: Comentar y generar Javadoc.

@@ -8,12 +8,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
-// TODO: Comentar y generar Javadoc.
-
 /**
  * Clase para el preprocesamiento de textos de los documentos del corpus.
+ * Esta clase se encarga de preparar los documentos para su posterior indexación,
+ * aplicando una serie de filtros de texto y almacenando los resultados.
  */
 public class Preprocesador {
+    // Conjunto de palabras vacías que se filtrarán durante el preprocesamiento.
     private static final Set<String> PALABRAS_VACIAS = new HashSet<>(Arrays.asList(
             "a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any",
             "are", "aren't", "as", "at", "be", "because", "been", "before", "being", "below", "between", "both",
@@ -33,9 +34,18 @@ public class Preprocesador {
     ));
 
     /**
-     * Procesa el corpus de documentos de forma paralela.
+     * Constructor de la clase Preprocesador.
+     * Inicia el preprocesamiento de los documentos del corpus.
      */
-    public void procesarCorpus() {
+    public Preprocesador() {
+        procesarCorpus();
+    }
+
+    /**
+     * Procesa de manera paralela todos los documentos en el corpus.
+     * Lee cada documento, aplica el preprocesamiento y almacena los resultados.
+     */
+    private void procesarCorpus() {
         System.out.println("[PRE-PROCESAMIENTO] Iniciando...");
         long tiempoInicio = System.currentTimeMillis();
         try (Stream<Path> rutasStream = Files.walk(Paths.get(Rutas.RUTA_CORPUS))) {
@@ -51,6 +61,12 @@ public class Preprocesador {
         }
     }
 
+    /**
+     * Procesa un documento individual del corpus.
+     * Lee el contenido del documento, aplica los filtros de texto y almacena el resultado.
+     *
+     * @param ruta Ruta al documento a procesar.
+     */
     private void procesarDocumentoIndividual(Path ruta) {
         try {
             List<String> terminos = preprocesarDocumento(ruta);
@@ -64,11 +80,27 @@ public class Preprocesador {
         }
     }
 
+    /**
+     * Preprocesa el contenido de un documento.
+     * Aplica filtros de texto como la eliminación de palabras vacías y otros filtros definidos en FiltradorTexto.
+     *
+     * @param rutaDocumento Ruta del documento a preprocesar.
+     * @return Lista de términos procesados del documento.
+     * @throws IOException Si ocurre un error al leer el contenido del documento.
+     */
     private List<String> preprocesarDocumento(Path rutaDocumento) throws IOException {
         String contenido = Files.readString(rutaDocumento);
         return FiltradorTexto.filtradoCompleto(contenido, PALABRAS_VACIAS);
     }
 
+    /**
+     * Guarda los términos procesados en un archivo.
+     * Crea un nuevo archivo con el contenido procesado del documento.
+     *
+     * @param ruta Ruta del documento original.
+     * @param terminos Lista de términos procesados.
+     * @throws IOException Si ocurre un error al escribir los términos procesados.
+     */
     private void guardarTerminosProcesados(Path ruta, List<String> terminos) throws IOException {
         Files.writeString(Paths.get(Rutas.RUTA_CORPUS_PROCESADO, "procesado_" + ruta.getFileName().toString()),
                 String.join(" ", terminos));

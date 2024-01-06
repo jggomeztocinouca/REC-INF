@@ -1,12 +1,23 @@
-import java.io.IOException;
+// TODO: Indexador.java
+// TODO: Comprobar que se cumplen todos los requisitos del proyecto
+// TODO: Documentación
 
-// TODO: Comentar y generar Javadoc.
-
+/**
+ * Clase principal del proyecto.
+ * @author Jesús Gómez
+ * @author Francisco Mercado
+ */
 public class RI {
 
-    public static void main(String[] args) throws IOException {
-        new Preprocesador().procesarCorpus();
-        new Indexador().indexar();
-        new Buscador().buscar();
+    /**
+     * Método principal del proyecto.
+     * Inicia el proceso de preprocesamiento, indexación y búsqueda.
+     *
+     * @param args Argumentos de la línea de comandos.
+     */
+    public static void main(String[] args) {
+        new Preprocesador();
+        new Indexador();
+        new Buscador();
     }
 }
