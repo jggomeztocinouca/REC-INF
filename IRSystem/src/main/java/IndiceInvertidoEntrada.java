@@ -2,6 +2,9 @@ import java.util.Map;
 
 /**
  * Clase que representa una entrada en el índice invertido, asociando un término con su IDF y los documentos (con sus pesos) en los que aparece.
+ *
+ * @author Jesús Gómez
+ * @author Francisco Mercado
  */
 public class IndiceInvertidoEntrada {
 

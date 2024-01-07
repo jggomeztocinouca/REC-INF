@@ -6,6 +6,7 @@
  * Clase principal del proyecto.
  * @author Jesús Gómez
  * @author Francisco Mercado
+ * @version 2024
  */
 public class RI {
 

@@ -11,6 +11,9 @@ import java.util.stream.Collectors;
 /**
  * Clase para el filtrado de texto.
  * Esta clase se encarga de aplicar una serie de filtros de texto a una cadena de texto recibida.
+ *
+ * @author Jesús Gómez
+ * @author Francisco Mercado
  */
 public class FiltradorTexto {
     private static final Pattern PATRON_PUNTUACION = Pattern.compile("[^\\w\\s]|_");

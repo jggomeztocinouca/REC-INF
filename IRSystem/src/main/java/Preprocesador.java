@@ -12,6 +12,9 @@ import java.util.stream.Stream;
  * Clase para el preprocesamiento de textos de los documentos del corpus.
  * Esta clase se encarga de preparar los documentos para su posterior indexación,
  * aplicando una serie de filtros de texto y almacenando los resultados.
+ *
+ * @author Jesús Gómez
+ * @author Francisco Mercado
  */
 public class Preprocesador {
     // Conjunto de palabras vacías que se filtrarán durante el preprocesamiento.

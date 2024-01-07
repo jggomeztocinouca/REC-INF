@@ -1,5 +1,8 @@
 /**
  * Clase que contiene las rutas de los archivos de entrada y salida de los diferentes módulos.
+ *
+ * @author Jesús Gómez
+ * @author Francisco Mercado
  */
 public class Rutas {
     public static final String RUTA_CORPUS = "src/main/resources/corpus";

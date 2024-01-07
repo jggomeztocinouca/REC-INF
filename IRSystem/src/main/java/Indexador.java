@@ -14,6 +14,9 @@ import java.util.stream.Stream;
  * Clase responsable de indexar documentos procesados para un sistema de recuperación de información.
  * Realiza el procesamiento de documentos para calcular los términos y sus frecuencias (TF),
  * el IDF de los términos y construir un índice invertido.
+ *
+ * @author Jesús Gómez
+ * @author Francisco Mercado
  */
 public class Indexador {
     private final Map<String, Map<String, Double>> tfPorDocumento;
