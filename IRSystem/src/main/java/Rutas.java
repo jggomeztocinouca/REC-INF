@@ -1,3 +1,5 @@
+package main.java;
+
 /**
  * Clase que contiene las rutas de los archivos de entrada y salida de los diferentes módulos.
  *

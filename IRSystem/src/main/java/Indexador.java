@@ -1,3 +1,5 @@
+package main.java;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
@@ -7,8 +9,6 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-// TODO: Revisar cálculos (Comparar con la salida de ejemplo de las diapositivas de ayuda).
 
 /**
  * Clase responsable de indexar documentos procesados para un sistema de recuperación de información.
@@ -29,7 +29,6 @@ public class Indexador {
      * Inicializa las estructuras de datos para almacenar TF, IDF, longitud de documentos e índice invertido.
      */
     public Indexador() {
-        new Preprocesador();
         this.tfPorDocumento = new ConcurrentHashMap<>();
         this.idfPorTermino = new ConcurrentHashMap<>();
         this.longitudPorDocumento = new ConcurrentHashMap<>();
