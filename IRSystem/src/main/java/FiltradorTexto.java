@@ -22,12 +22,20 @@ public class FiltradorTexto {
     private static final int longitudMinima = 2;
 
     /**
+     * Método que divide una cadena de texto en términos individuales.
+     * @param texto Texto a dividir.
+     */
+    public static List<String> dividirEnTerminos(String texto) {
+        return Arrays.asList(texto.split("\\s+"));
+    }
+
+    /**
      * Método que aplica una serie de filtros de texto a una lista de términos,
      * sustituyendo caracteres no alfanuméricos, números y espacios duplicados por espacios en cada término.
      * @param terminos Lista de términos a filtrar.
      * @return Lista de términos limpiados.
      */
-    public static List<String> limpiarTexto(List<String> terminos) {
+    public static List<String> filtrarCaracteres(List<String> terminos) {
         return terminos.stream()
                 .map(termino -> PATRON_ESPACIOS_DUPLICADOS.matcher(
                         PATRON_NUMEROS.matcher(
@@ -35,13 +43,6 @@ public class FiltradorTexto {
                         ).replaceAll(" ")
                 ).replaceAll(" ").trim())
                 .collect(Collectors.toList());
-    }
-    /**
-     * Método que divide una cadena de texto en términos individuales.
-     * @param texto Texto a dividir.
-     */
-    public static List<String> dividirEnTerminos(String texto) {
-        return Arrays.asList(texto.split("\\s+"));
     }
 
     /**
@@ -86,7 +87,7 @@ public class FiltradorTexto {
      * @return Lista de términos filtrados.
      */
     public static List<String> filtradoCompleto(String texto, Set<String> PALABRAS_VACIAS){
-        return aplicarStemming(filtrarPorLongitud(filtrarPalabrasVacias(limpiarTexto(dividirEnTerminos(texto)), PALABRAS_VACIAS)));
+        return aplicarStemming(filtrarPorLongitud(filtrarPalabrasVacias(filtrarCaracteres(dividirEnTerminos(texto)), PALABRAS_VACIAS)));
     }
 
 }
