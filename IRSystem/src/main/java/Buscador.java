@@ -1,7 +1,10 @@
+package main.java;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -117,7 +120,7 @@ public class Buscador {
         System.out.println("[BUSCADOR] Iniciando...");
         Scanner scanner = new Scanner(System.in);
         while (true) { // Mientras el usuario no escriba "Parar buscador" y confirme, seguirá pidiendo consultas
-            System.out.println("[BUSCADOR] Introduzca su consulta (o 'Parar buscador' para finalizar):");
+            System.out.println("[BUSCADOR] Introduzca los términos de la consulta (o 'Parar buscador' para finalizar):");
             String consulta = scanner.nextLine();
 
             if ("Parar buscador".equalsIgnoreCase(consulta)) {
@@ -139,8 +142,6 @@ public class Buscador {
                 int numeroResultados = scanner.nextInt();
                 scanner.nextLine(); // Limpiar el buffer del scanner
                 mostrarResultados(resultados, numeroResultados);
-            } else {
-                System.out.println("[BUSCADOR (EXCEPCIÓN)] No se encontraron resultados para su consulta.");
             }
         }
         scanner.close();
@@ -159,7 +160,7 @@ public class Buscador {
         Map<String, Double> puntuacionesDocumentos = new HashMap<>();
 
         if (terminosConsulta.size() == 1) { // Búsqueda de un único término
-            buscarTerminoUnico(terminosConsulta.getFirst(), puntuacionesDocumentos);
+            buscarTerminoUnico(terminosConsulta.get(0), puntuacionesDocumentos);
         } else if (consultaContieneOperadores(terminosConsulta)) { // Búsquedas con operadores AND/OR
             buscarConOperadores(terminosConsulta, puntuacionesDocumentos);
         } else { // Búsqueda de frases
@@ -315,13 +316,63 @@ public class Buscador {
      */
     private void mostrarResultados(Map<String, Double> resultados, int numeroResultados) {
         System.out.println("[BUSCADOR] Resultados de la búsqueda:");
+
         int contador = 0;
         for (Map.Entry<String, Double> entrada : resultados.entrySet()) {
             if (contador >= numeroResultados) {
                 break;
             }
-            System.out.println(entrada.getKey() + ": " + entrada.getValue());
+
+            String documentID = entrada.getKey();
+            double weight = entrada.getValue();
+
+            // Muestra la información en el formato deseado.
+            String[] nombreArchivo = documentID.split("_");
+            System.out.println("ID Documento: " + nombreArchivo[1] + " (Peso: " + weight + ")");
+            mostrarResumen(nombreArchivo[1]);
             contador++;
         }
+    }
+
+    /**
+     * Muestra el resumen del documento dado el ID del documento.
+     *
+     * @param documentID Identificador del documento.
+     */
+    public void mostrarResumen(String documentID) {
+        try (BufferedReader reader = Files.newBufferedReader(obtenerRutaDocumento(documentID))) {
+            String line;
+            StringBuilder resumen = new StringBuilder();
+            int totalChars = 0; // Contador para el total de caracteres
+            boolean excede = false; // Bandera para indicar si el resumen excede los 100 caracteres
+
+            while ((line = reader.readLine()) != null) {
+                if (totalChars + line.length() > 100) {
+                    // Si agregar esta línea excede los 100 caracteres, añade solo los caracteres que faltan
+                    resumen.append(line.substring(0, 100 - totalChars));
+                    excede = true;
+                    break; // Rompe el bucle, ya que se alcanzó el límite de caracteres
+                } else {
+                    // Si no, agrega toda la línea y actualiza el contador de caracteres
+                    resumen.append(line).append("\n");
+                    totalChars += line.length() + 1; // +1 por el carácter de nueva línea
+                }
+            }
+            // Muestra la información del resumen
+            if (excede)
+            {
+                System.out.println("Resumen: " + resumen.toString().trim() + " [...]");
+            }
+            else
+            {
+                System.out.println("Resumen: " + resumen.toString().trim());
+            }
+        } catch (IOException e) {
+            System.err.println("Error al leer el contenido del documento " + documentID + ": " + e.getMessage());
+        }
+    }
+
+    private Path obtenerRutaDocumento(String documentID) {
+        return Paths.get("src", "main", "resources", "corpus", documentID);
     }
 }
