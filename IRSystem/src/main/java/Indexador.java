@@ -29,6 +29,7 @@ public class Indexador {
      * Inicializa las estructuras de datos para almacenar TF, IDF, longitud de documentos e índice invertido.
      */
     public Indexador() {
+        new Preprocesador();
         this.tfPorDocumento = new ConcurrentHashMap<>();
         this.idfPorTermino = new ConcurrentHashMap<>();
         this.longitudPorDocumento = new ConcurrentHashMap<>();

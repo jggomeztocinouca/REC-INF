@@ -17,7 +17,6 @@ public class RI {
      * @param args Argumentos de la línea de comandos.
      */
     public static void main(String[] args) {
-        new Preprocesador();
         new Indexador();
         new Buscador();
     }

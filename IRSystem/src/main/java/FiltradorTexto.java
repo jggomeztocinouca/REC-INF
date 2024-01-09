@@ -19,20 +19,23 @@ public class FiltradorTexto {
     private static final Pattern PATRON_PUNTUACION = Pattern.compile("[^\\w\\s]|_");
     private static final Pattern PATRON_NUMEROS = Pattern.compile("\\b\\d+\\b");
     private static final Pattern PATRON_ESPACIOS_DUPLICADOS = Pattern.compile("\\s+");
+    private static final int longitudMinima = 2;
 
     /**
-     * Método que aplica una serie de filtros de texto a una cadena de texto recibida,
-     * sustituyendo caracteres no alfanuméricos, números y espacios duplicados por espacios.
-     * @param texto Texto a filtrar.
+     * Método que aplica una serie de filtros de texto a una lista de términos,
+     * sustituyendo caracteres no alfanuméricos, números y espacios duplicados por espacios en cada término.
+     * @param terminos Lista de términos a filtrar.
+     * @return Lista de términos limpiados.
      */
-    public static String limpiarTexto(String texto) {
-        return PATRON_ESPACIOS_DUPLICADOS.matcher(
-                PATRON_NUMEROS.matcher(
-                        PATRON_PUNTUACION.matcher(texto.toLowerCase()).replaceAll(" ")
-                ).replaceAll(" ")
-        ).replaceAll(" ").trim();
+    public static List<String> limpiarTexto(List<String> terminos) {
+        return terminos.stream()
+                .map(termino -> PATRON_ESPACIOS_DUPLICADOS.matcher(
+                        PATRON_NUMEROS.matcher(
+                                PATRON_PUNTUACION.matcher(termino.toLowerCase()).replaceAll(" ")
+                        ).replaceAll(" ")
+                ).replaceAll(" ").trim())
+                .collect(Collectors.toList());
     }
-
     /**
      * Método que divide una cadena de texto en términos individuales.
      * @param texto Texto a dividir.
@@ -53,6 +56,17 @@ public class FiltradorTexto {
     }
 
     /**
+     * Método que filtra una lista de términos, eliminando aquellos cuya longitud sea inferior a un tamaño mínimo especificado.
+     * @param terminos Lista de términos a filtrar.
+     * @return Lista de términos filtrados.
+     */
+    public static List<String> filtrarPorLongitud(List<String> terminos) {
+        return terminos.stream()
+                .filter(termino -> termino.length() >= longitudMinima)
+                .collect(Collectors.toList());
+    }
+
+    /**
      * Método que aplica el algoritmo de stemming de Porter a una lista de términos.
      * @param terminos Lista de términos a los que aplicar stemming.
      */
@@ -69,8 +83,10 @@ public class FiltradorTexto {
      * Método que aplica todos los filtros de texto a una cadena de texto.
      * @param texto Texto a filtrar.
      * @param PALABRAS_VACIAS Conjunto de palabras vacías.
+     * @return Lista de términos filtrados.
      */
     public static List<String> filtradoCompleto(String texto, Set<String> PALABRAS_VACIAS){
-        return aplicarStemming(filtrarPalabrasVacias(dividirEnTerminos(limpiarTexto(texto)), PALABRAS_VACIAS));
+        return aplicarStemming(filtrarPorLongitud(filtrarPalabrasVacias(limpiarTexto(dividirEnTerminos(texto)), PALABRAS_VACIAS)));
     }
+
 }
